@@ -52,9 +52,7 @@
     		<mkdir dir="${build.dir}/jar"/>
     	
     		<jar destfile="${build.dir}/jar/${jar.mainModule}" >
-    			<fileset dir="${build.dir}">
-    				<include name="**/*.class"/>
-    			</fileset>
+    			<fileset dir="${build.dir}/classes"/>
     		</jar>
     </target>
 
@@ -65,9 +63,7 @@
 		<echo>Creating the jar file suitable for hadoop jobs</echo>
     	
     		<jar destfile="${build.dir}/jar/${jar.hadoopModule}" >
-    			<fileset dir="${build.dir}">
-    				<include name="**/*.class"/>
-    			</fileset>
+    			<fileset dir="${build.dir}/classes" />
     			<fileset dir=".">
 				<include name="${lib.dir}/*"/>
     				<exclude name="${lib.dir}/hadoop*.jar"/>
@@ -95,17 +91,15 @@
           target: deploy-expanded              
          ================================= -->
 	<target name="deploy-expanded" depends="build" description="creates an unpacked directory (build/web) for deploying wikipedia miner website and services">
-		<copy todir="${build.dir}">
-			<fileset dir=".">
-			<include name="${web.content}/*"/>
-			</fileset>
+		
+		<mkdir dir="${build.dir}/${web.content}"/>
+		<copy todir="${build.dir}/${web.content}">
+			<fileset dir="${web.content}"/>
 		</copy>
 		
-		
-		<mkdir dir="${build.dir}/${web.content}/WEB-INF/classes"/>
-	    <copy todir="${build.dir}/${web.content}/WEB-INF/classes">
-	    	<fileset dir="${build.dir}/classes/">
-	    	</fileset>
+		<mkdir dir="${build.dir}/${web.content}/WEB-INF/classes"/>	
+		<copy todir="${build.dir}/${web.content}/WEB-INF/classes">
+	    		<fileset dir="${build.dir}/classes/"/>
 	    </copy>	
 	    
 		<copy file="${conf.dir}/web.xml" todir="${build.dir}/${web.content}/WEB-INF/"/>
