@@ -14,7 +14,7 @@ public class HebrewLemmatizer extends TextProcessor {
 	
 	{
 		try {
-			this._tagger = new SimpleTagger3("./");
+			this._tagger = new SimpleTagger3("./tagger_data/");
 		} catch (Exception e){
 			e.printStackTrace();
 		}
