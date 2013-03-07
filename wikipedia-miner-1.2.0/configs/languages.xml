@@ -58,7 +58,7 @@
 
 	<Language code="he" name="Hebrew" localName="עברית">
 
-		<RootCategory>עמוד_ראשי</RootCategory>
+		<RootCategory>קטגוריות</RootCategory>
 
 		<DisambiguationCategory>תבניות_תחזוקה</DisambiguationCategory>
 
