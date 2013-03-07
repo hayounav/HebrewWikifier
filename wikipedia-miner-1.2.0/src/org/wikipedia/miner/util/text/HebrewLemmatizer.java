@@ -33,8 +33,14 @@ public class HebrewLemmatizer extends TextProcessor {
 				for (TokenExt tokenExt : sentence.getTokens()){
 					Token token = tokenExt._token;
 					Anal anal =  token.getSelectedAnal();
-					String[] wordParts = anal.getLemma().toString().split("\\^");
-					sentenceSB.append(wordParts[wordParts.length - 1]).append(" ");
+					String lemma = anal.getLemma().toString();
+					
+					if (!lemma.isEmpty()){
+						String[] wordParts = lemma.split("\\^");
+						lemma = wordParts[wordParts.length - 1];
+					}
+					
+					sentenceSB.append(lemma).append(" ");
 				}
 				textSB.append(sentenceSB.toString().trim()).append("\n");
 			}
