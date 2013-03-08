@@ -18,7 +18,8 @@
 		All labels will be created using this text processor unless otherwise specified. If the 'label' database
 		is cached to memory, it will be indexed using labels that have been prepared with this text processor.
 	-->
-	<defaultTextProcessor>org.wikipedia.miner.util.text.HebrewLemmatizer</defaultTextProcessor>
+<!--	<defaultTextProcessor>org.wikipedia.miner.util.text.HebrewLemmatizer</defaultTextProcessor> -->
+	<defaultTextProcessor>org.wikipedia.miner.util.text.NullProcessor</defaultTextProcessor> 
 
 
 	<!--

@@ -44,6 +44,23 @@
 			</java>
     </target>
 
+
+
+   <!-- ================================= 
+          target: process-labels             
+         ================================= -->
+	<target name="process-labels" depends="build" description="process the labels DB">
+    		<echo>Processing and indexing the labels</echo>
+			<java classname="org.wikipedia.miner.demo.Lemmatize" fork="true">
+				<classpath>
+					<path location="${build.dir}/classes/"/>
+					<path refid="classpath"/>
+				</classpath>
+				<arg value="${wiki.conf}" />
+				<jvmarg value="-Xmx2G" />
+			</java>
+    </target>
+
     <!-- ================================= 
           target: package              
          ================================= -->
