@@ -58,7 +58,7 @@ public class HebrewLemmatizer extends TextProcessor {
 					}
 				}
 				
-				if (!textSB.toString().isEmpty()){
+				if (!sentenceSB.toString().isEmpty()){
 					textSB.append(sentenceSB.toString().trim()).append("\n");
 				}
 			}
