@@ -26,10 +26,10 @@ public class HebrewLemmatizer extends TextProcessor {
 		String result = "";
 		
 		try{
-			StringBuilder textSB = new StringBuilder();
+			StringBuilder textSB = new StringBuilder("");
 			List<Sentence> taggedSentences = this._tagger.getTaggedSentences(text);
 			for (Sentence sentence : taggedSentences){
-				StringBuilder sentenceSB = new StringBuilder();
+				StringBuilder sentenceSB = new StringBuilder("");
 				for (TokenExt tokenExt : sentence.getTokens()){
 					Token token = tokenExt._token;
 					Anal anal =  token.getSelectedAnal();
@@ -37,12 +37,13 @@ public class HebrewLemmatizer extends TextProcessor {
 					
 					if (!lemma.isEmpty()){
 						String[] wordParts = lemma.split("\\^");
-						lemma = wordParts[wordParts.length - 1];
+						sentenceSB.append(wordParts[wordParts.length - 1]).append(" ");
 					}
-					
-					sentenceSB.append(lemma).append(" ");
 				}
-				textSB.append(sentenceSB.toString().trim()).append("\n");
+				
+				if (!textSB.toString().isEmpty()){
+					textSB.append(sentenceSB.toString().trim()).append("\n");
+				}
 			}
 			result = textSB.toString().trim();
 		} catch (Exception e){
