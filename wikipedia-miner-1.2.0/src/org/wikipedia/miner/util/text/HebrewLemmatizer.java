@@ -11,6 +11,7 @@ import vohmm.corpus.Anal;
 import vohmm.corpus.Sentence;
 import vohmm.corpus.Token;
 import vohmm.corpus.TokenExt;
+import vohmm.util.Bitmask;
 
 public class HebrewLemmatizer extends TextProcessor {
 	
@@ -50,10 +51,16 @@ public class HebrewLemmatizer extends TextProcessor {
 				for (TokenExt tokenExt : sentence.getTokens()){
 					Token token = tokenExt._token;
 					Anal anal =  token.getSelectedAnal();
-					String lemma = anal.getLemma().toString();
 					
-					if (!lemma.isEmpty()){
-						String[] wordParts = lemma.split("\\^");
+					String lemma;
+					if (anal.isPos(Bitmask.BASEFORM_NUMBER)){
+						lemma = token.getOrigStr();
+					} else {
+						lemma = anal.getLemma().toString();
+					}
+					
+					String[] wordParts = lemma.split("\\^");
+					if (wordParts.length > 0){
 						sentenceSB.append(wordParts[wordParts.length - 1]).append(" ");
 					}
 				}
