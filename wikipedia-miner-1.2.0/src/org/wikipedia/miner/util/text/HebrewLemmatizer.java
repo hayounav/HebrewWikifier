@@ -1,5 +1,9 @@
 package org.wikipedia.miner.util.text;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 
 import vohmm.application.SimpleTagger3;
@@ -11,11 +15,19 @@ import vohmm.corpus.TokenExt;
 public class HebrewLemmatizer extends TextProcessor {
 	
 	private SimpleTagger3 _tagger;
+	private BufferedWriter _logger = null;
 	
 	{
 		try {
 			this._tagger = new SimpleTagger3("./tagger_data/");
 		} catch (Exception e){
+			e.printStackTrace();
+		}
+		
+		try {
+			FileWriter fw = new FileWriter(new File("lemmatizer.log"));
+			this._logger = new BufferedWriter(fw); 
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -26,6 +38,11 @@ public class HebrewLemmatizer extends TextProcessor {
 		String result = "";
 		
 		try{
+			if (_logger != null){
+				_logger.write("start working on text: "+text);
+				_logger.newLine();
+			}
+			
 			StringBuilder textSB = new StringBuilder("");
 			List<Sentence> taggedSentences = this._tagger.getTaggedSentences(text);
 			for (Sentence sentence : taggedSentences){
@@ -46,6 +63,11 @@ public class HebrewLemmatizer extends TextProcessor {
 				}
 			}
 			result = textSB.toString().trim();
+			
+			if (_logger != null){
+				_logger.write("finished. final text is " + result);
+				_logger.newLine();
+			}
 		} catch (Exception e){
 			e.printStackTrace();
 		}
