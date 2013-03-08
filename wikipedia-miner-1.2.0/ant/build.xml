@@ -60,6 +60,22 @@
 				<jvmarg value="-Xmx2G" />
 			</java>
     </target>
+	
+	<!-- ================================= 
+	          target: annotate             
+	         ================================= -->
+		<target name="annotate" depends="build" description="Annotate stuff">
+	    		<echo>Processing and indexing the labels</echo>
+				<java classname="org.wikipedia.miner.demo.HebrewAnnotator" fork="true">
+					<classpath>
+						<path location="${build.dir}/classes/"/>
+						<path refid="classpath"/>
+					</classpath>
+					<arg value="${wiki.conf}" />
+					<jvmarg value="-Xmx2G" />
+				</java>
+	    </target>
+
 
     <!-- ================================= 
           target: package              
