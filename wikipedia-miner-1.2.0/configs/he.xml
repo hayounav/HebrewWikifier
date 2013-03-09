@@ -27,7 +27,7 @@
 		This can be used to exclude obscure or unpopular pages and labels.
 		This param is ignored unless the 'page' or 'label' database is cached to memory.
 	-->
-	<minLinksIn>3</minLinksIn>
+	<minLinksIn>1</minLinksIn>
 
 
 	<!--
@@ -54,7 +54,7 @@
 		A file containing words (one per line) that should be ignored when detecting concepts within documents
 		and queries.
 	-->
-	<stopwordFile></stopwordFile>
+	<stopwordFile>data/he-stopwords.txt</stopwordFile>
 
 
 	<!--
@@ -79,25 +79,20 @@
 		This must be trained using the same dependencies listed above.If you do not supply one, 
 		then article comparisons will be made without machine learning.
 	 -->
-	<articleComparisonModel>
-	</articleComparisonModel>
+	<articleComparisonModel></articleComparisonModel>
 	
 	<!-- A file containing a Weka classifier for disambiguating pairs of labels -->
-	<labelDisambiguationModel>
-	</labelDisambiguationModel>
+	<labelDisambiguationModel></labelDisambiguationModel>
 	
 	<!-- A file containing a Weka classifier for generating relatedness measures between labels -->
-	<labelComparisonModel>
-	</labelComparisonModel>
+	<labelComparisonModel></labelComparisonModel>
 
 
 	<!-- A file containing a Weka classifier for performing automatic disambiguation of topics in documents -->
-	<topicDisambiguationModel>
-	</topicDisambiguationModel>
+	<topicDisambiguationModel>models/annotate/disambig_he_In_Def.model</topicDisambiguationModel>
 
 
 	<!-- A file containing a Weka classifier for performing automatic link detection -->
-	<linkDetectionModel>
-	</linkDetectionModel>
+	<linkDetectionModel>models/annotate/detect_he_In_Def.model</linkDetectionModel>
 
 </wikipediaConfiguration>
