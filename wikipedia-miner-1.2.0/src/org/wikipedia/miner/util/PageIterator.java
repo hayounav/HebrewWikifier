@@ -100,7 +100,7 @@ public class PageIterator implements Iterator<Page> {
 			nextPage=toPage(iter.next()) ;
 
 			if (type != null) {
-				while (nextPage.getType() != type)
+				while (hasNext() && nextPage.getType() != type)
 					nextPage = toPage(iter.next());
 			}
 		} catch (NoSuchElementException e) {

@@ -64,6 +64,7 @@
 	-->
 	<databaseToCache priority="space">pageLinksIn</databaseToCache>
 	<databaseToCache priority="space">label</databaseToCache>
+	<databaseToCache priority="speed">pageLinksInNoSentences</databaseToCache>
 
 
 	<!--

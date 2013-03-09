@@ -82,7 +82,7 @@
 	         ================================= -->
 		<target name="build-annotation-models" depends="build" description="Create language models required for annotating">
 	    		<echo>Processing and indexing the labels</echo>
-				<java classname="org.wikipedia.miner.annotate.workbench.AnnotationWorkbench" fork="true">
+				<java classname="org.wikipedia.miner.annotation.workbench.AnnotationWorkbench" fork="true">
 					<classpath>
 						<path location="${build.dir}/classes/"/>
 						<path refid="classpath"/>

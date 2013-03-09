@@ -56,17 +56,20 @@ public class AnnotationWorkbench {
 		
 		_arffDisambig = new File(_dataDir.getPath() + "/disambig.arff") ;
 		_arffDetect = new File(_dataDir.getPath() + "/detect.arff") ;
+
+		_modelDisambig = new File(_dataDir.getPath() + "/disambig_he_In.model");
+		_modelDetect = new File(_dataDir.getPath() + "/detect_he_In.model");
 	}
 	
 	
 	private void gatherArticleSets() throws IOException{
-		int[] sizes = {200,100,100} ;
+		int[] sizes = {250,125,125} ;
 
 		ArticleSet[] articleSets = new ArticleSetBuilder()
-		.setMinOutLinks(25)
-		.setMinInLinks(50)
-		.setMaxListProportion(0.1)
-		.setMinWordCount(1000)
+		.setMinOutLinks(15)
+		.setMinInLinks(15)
+		.setMaxListProportion(0.17)
+		.setMinWordCount(200)
 		.setMaxWordCount(2000)
 		.buildExclusiveSets(sizes, _wikipedia) ;
 		
@@ -85,13 +88,14 @@ public class AnnotationWorkbench {
 		_disambiguator.train(trainingSet, SnippetLength.full, datasetName + "_disambiguation", null) ;
 		_disambiguator.saveTrainingData(_arffDisambig) ;
 		
+		_disambiguator.buildDefaultClassifier();
 		_linkDetector.train(trainingSet, SnippetLength.full, datasetName + "_detection", _topicDetector, null) ;
 		_linkDetector.saveTrainingData(_arffDetect) ;
 	}
 	
 	private void createClassifiers(String configDisambig, String configDetect) throws Exception {
 		
-		if (_arffDisambig.canRead() || !_arffDetect.canRead())
+		if (!_arffDisambig.canRead() || !_arffDetect.canRead())
 			throw new Exception("Arff files have not yet been created") ;
 		
 		_disambiguator.loadTrainingData(_arffDisambig) ;
@@ -142,7 +146,6 @@ public class AnnotationWorkbench {
 	}
 	
 	public static void main(String args[]) throws Exception {
-		
 		File dataDir = new File(args[0]) ;
 		
 		WikipediaConfiguration conf = new WikipediaConfiguration(new File(args[1])) ;
