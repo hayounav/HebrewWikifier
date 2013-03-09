@@ -1,4 +1,4 @@
-package org.wikipedia.miner.annotation.workbench
+package org.wikipedia.miner.annotation.workbench;
 
 import java.io.BufferedReader;
 import java.io.File;
