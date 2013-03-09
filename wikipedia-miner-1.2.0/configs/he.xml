@@ -90,10 +90,10 @@
 
 
 	<!-- A file containing a Weka classifier for performing automatic disambiguation of topics in documents -->
-	<topicDisambiguationModel>models/annotate/disambig_he_In_Def.model</topicDisambiguationModel>
+	<topicDisambiguationModel>models/annotate/disambig_he_In.model</topicDisambiguationModel>
 
 
 	<!-- A file containing a Weka classifier for performing automatic link detection -->
-	<linkDetectionModel>models/annotate/detect_he_In_Def.model</linkDetectionModel>
+	<linkDetectionModel>models/annotate/detect_he_In.model</linkDetectionModel>
 
 </wikipediaConfiguration>
